@@ -72,11 +72,11 @@ class DistanceSelfConversion(unittest.TestCase):
 class IncompatibleConversion(unittest.TestCase):
 
 	def testConvertDistanceToTemp(self):
-		self.assertRaises(TypeError, conversions_refactored.convert, 'Meter', 'Kelvin', 10.00)
+		self.assertRaises(conversions_refactored.ConversionNotPossible, conversions_refactored.convert, 'Meter', 'Kelvin', 10.00)
 
 
 	def testConvertTempToDistance(self):
-		self.assertRaises(TypeError, conversions_refactored.convert, 'Celsius', 'Yard', 10.00)
+		self.assertRaises(conversions_refactored.ConversionNotPossible, conversions_refactored.convert, 'Celsius', 'Yard', 10.00)
 
 
 if __name__ == "__main__":
