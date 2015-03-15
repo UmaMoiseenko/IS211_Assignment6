@@ -2,86 +2,158 @@ import conversion
 import unittest
 
 """
-test conversion celsius to kelvin and kelivn to celsius
+test conversion celsius to kelvin 
 """
-class CelsiusAndKelvin(unittest.TestCase):
+class CelsiusToKelvin(unittest.TestCase):
 
-	values = ( 
-		(300.00, 573.15),
-		(150.00, 423.15),
-		(115.00, 388.15) )
+	def testConvertCelsiusToKelvin_default(self):
+		result = conversion.convertCelsiusToKelvin(300.00)
+		self.assertEqual(573.15, result)
 
-	
-	def testConvertCelsiusToKelvin(self):
-		for celsius, kelvin in self.values:
-			result = conversion.convertCelsiusToKelvin(celsius)
-			self.assertEqual(kelvin, result)
+	def testConvertCelsiusToKelvin_zeroCelsius(self):
+		result = conversion.convertCelsiusToKelvin(0.00)
+		self.assertEqual(273.15, result)
 
-	def testConvertKelvinToCelsius(self):
-		for celsius, kelvin in self.values:
-			result = conversion.convertKelvinToCelsius(kelvin)
-			self.assertEqual(celsius, result)
+	def testConvertCelsiusToKelvin_decimalValues(self):
+		result = conversion.convertCelsiusToKelvin(0.02)
+		self.assertEqual(273.17, result)
+
+	def testConvertCelsiusToKelvin_negativeValues(self):
+		result = conversion.convertCelsiusToKelvin(-280.00)
+		self.assertEqual(-6.85, result)
+
+	def testConvertCelsiusToKelvin_largeNumber(self):
+		result = conversion.convertCelsiusToKelvin(2345670)
+		self.assertEqual(2345943.15, result)
 
 """
-test conversion celsius to fahrenheit and fahrenheit to celsius
+test conversion kelvin to celsius
 """
-class CelsiusAndFahrenheit(unittest.TestCase):
+class KelvinToCelsius(unittest.TestCase):
+
+	def testConvertKelvinToCelsius_default(self):
+		result = conversion.convertKelvinToCelsius(573.15)
+		self.assertEqual(300.00, result)
+
+	def testConvertKelvinToCelsius_zeroCelsius(self):
+		result = conversion.convertKelvinToCelsius(273.15)
+		self.assertEqual(0.00, result)
+
+	def testConvertKelvinToCelsius_decimalValues(self):
+		result = conversion.convertKelvinToCelsius(273.17)
+		self.assertEqual(0.02, result)
+
+	def testConvertKelvinToCelsius_negativeValues(self):
+		result = conversion.convertKelvinToCelsius(-6.85)
+		self.assertEqual(-280.00, result)
+
+	def testConvertKelvinToCelsius_largeNumber(self):
+		result = conversion.convertKelvinToCelsius(2345943.15)
+		self.assertEqual(2345670, result)
+
+
+"""
+test conversion celsius to fahrenheit
+"""
+class CelsiusToFahrenheit(unittest.TestCase):
     
-    values = ( 
-    	(300.00, 572.00),
-		(215.00, 419.00),
-		(150.00, 302.00))
+	def testCelsiusToFahrenheit_default(self):
+		result = conversion.convertCelsiusToFahrenheit(300.00)
+		self.assertEqual(572.00, result)
 
-    def testConvertCelsiusToFahrenheit(self):
-    	for celsius, fahrenheit in self.values:
-    		result = conversion.convertCelsiusToFahrenheit(celsius)
-    		self.assertEqual(fahrenheit, result)
-    
-    def testConvertFahrenheitToCelsius(self):
-    	for celsius, fahrenheit in self.values:
-    		result = conversion.convertFahrenheitToCelsius(fahrenheit)
-    		self.assertEqual(celsius, result)
+	def testCelsiusToFahrenheit_zeroCelsius(self):
+		result = conversion.convertCelsiusToFahrenheit(0.00)
+		self.assertEqual(32.00, result)
 
-"""
-test conversion celsius to fahrenheit and fahrenheit to celsius
-"""
-class CelsiusAndFahrenheit(unittest.TestCase):
-    
-    values = ( 
-    	(300.00, 572.00),
-		(215.00, 419.00),
-		(150.00, 302.00))
+	def testCelsiusToFahrenheit_decimalValues(self):
+		result = conversion.convertCelsiusToFahrenheit(15.5)
+		self.assertEqual(59.9, result)
 
-    def testConvertCelsiusToFahrenheit(self):
-    	for celsius, fahrenheit in self.values:
-    		result = conversion.convertCelsiusToFahrenheit(celsius)
-    		self.assertEqual(fahrenheit, result)
-    
-    def testConvertFahrenheitToCelsius(self):
-    	for celsius, fahrenheit in self.values:
-    		result = conversion.convertFahrenheitToCelsius(fahrenheit)
-    		self.assertEqual(celsius, result)
+	def testCelsiusToFahrenheit_negativeValues(self):
+		result = conversion.convertCelsiusToFahrenheit(-55.00)
+		self.assertEqual(-67.00, result)
+
+	def testCelsiusToFahrenheit_largeNumber(self):
+		result = conversion.convertCelsiusToFahrenheit(2345670)
+		self.assertEqual(4222238.00, result)
 
 
 """
-test conversion kelvin to fahrenheit and fahrenheit to kelvin 
+test conversion fahrenheit to celsius
 """
-class KelvinAndFahrenheit(unittest.TestCase):
+class FahrenheitToCelsius(unittest.TestCase):
     
-    values = ( 
-        (300.00, 80.33),
-        (215.00, -72.67),
-        (150.00, -189.67))
+	def testFahrenheitToCelsius_default(self):
+		result = conversion.convertFahrenheitToCelsius(572.00)
+		self.assertEqual(300.00, result)
 
-    def testConvertKelvinToFahrenheit(self):
-    	for kelvin, fahrenheit in self.values:
-    		result = conversion.convertKelvinToFahrenheit(kelvin)
-    		self.assertEqual(fahrenheit, result)
+	def testFahrenheitToCelsius_zeroCelsius(self):
+		result = conversion.convertFahrenheitToCelsius(32.00)
+		self.assertEqual(0.00, result)
 
-    def testConvertFahrenheitToKelvin(self):
-    	for kelvin, fahrenheit in self.values:
-    		result = conversion.convertFahrenheitToKelvin(fahrenheit)
-    		self.assertEqual(kelvin, result)
+	def testFahrenheitToCelsius_decimalValues(self):
+		result = conversion.convertFahrenheitToCelsius(59.9)
+		self.assertEqual(15.5, result)
+
+	def testFahrenheitToCelsius_negativeValues(self):
+		result = conversion.convertFahrenheitToCelsius(-67.00)
+		self.assertEqual(-55.00, result)
+
+	def testFahrenheitToCelsius_largeNumber(self):
+		result = conversion.convertFahrenheitToCelsius(4222238.00)
+		self.assertEqual(2345670, result)
+
+
+
+"""
+test conversion kelvin to fahrenheit
+"""
+class KelvinToFahrenheit(unittest.TestCase):
+
+	def testKelvinToFahrenheit_default(self):
+		result = conversion.convertKelvinToFahrenheit(300.00)
+		self.assertEqual(80.33, result)
+
+	def testKelvinToFahrenheit_zeroCKelvin(self):
+		result = conversion.convertKelvinToFahrenheit(0.00)
+		self.assertEqual(-459.67, result)
+
+	def testKelvinToFahrenheit_decimalValues(self):
+		result = conversion.convertKelvinToFahrenheit(305.35)
+		self.assertEqual(89.96, result)
+
+	def testKelvinToFahrenheit_negativeValues(self):
+		result = conversion.convertKelvinToFahrenheit(-30.35)
+		self.assertEqual(-514.3, result)
+
+	def testKelvinToFahrenheit_largeNumber(self):
+		result = conversion.convertKelvinToFahrenheit(4222238.00)
+		self.assertEqual(7599568.73, result)
+
+"""
+test conversion fahrenheit to kelvin 
+"""
+class FahrenheitToKelvin(unittest.TestCase):
+
+	def testFahrenheitToKelvin_default(self):
+		result = conversion.convertFahrenheitToKelvin(80.33)
+		self.assertEqual(300.00, result)
+
+	def testFahrenheitToKelvin_zeroCKelvin(self):
+		result = conversion.convertFahrenheitToKelvin(-459.67)
+		self.assertEqual(0.00, result)
+
+	def testFahrenheitToKelvin_decimalValues(self):
+		result = conversion.convertFahrenheitToKelvin(89.96)
+		self.assertEqual(305.35, result)
+
+	def testFahrenheitToKelvin_negativeValues(self):
+		result = conversion.convertFahrenheitToKelvin(-514.3)
+		self.assertEqual(-30.35, result)
+
+	def testFahrenheitToKelvin_largeNumber(self):
+		result = conversion.convertFahrenheitToKelvin(7599568.73)
+		self.assertEqual(4222238.00, result)
 
 
 if __name__ == "__main__":
