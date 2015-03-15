@@ -2,7 +2,6 @@ from decimal import Decimal
 
 
 def convert(fromUnit, toUnit, value):
-
     """
         m = yd/1.0936 - yard  to meter
         m = mi/0.00062137 - mile to meter
@@ -35,10 +34,10 @@ def convert(fromUnit, toUnit, value):
         devisor = dist_convert_values[fromUnit]
         multiplier = dist_convert_values[toUnit]
 
-        return value/devisor * multiplier
+        result =  Decimal( float(value)/devisor * multiplier )
+        return round(result,7)
 
     elif temp_convert_values.viewkeys() >= {fromUnit, toUnit}:
-        print "false"
         fromUnit = temp_convert_values[fromUnit]
         toUnit = temp_convert_values[toUnit]
 
@@ -48,13 +47,11 @@ def convert(fromUnit, toUnit, value):
         addent = toUnit[1]
 
         result =  Decimal( (float(value) - substract) * divident / devisor  + addent)
-        return round(result,2)
+        return round(result,7)
 
 
 class ConversionNotPossible(Exception):
     """ Exception """
     pass
 
-# convert('Celsius', 'Yard', 0)
-# convert('Meter', 'Yard', 10)
     

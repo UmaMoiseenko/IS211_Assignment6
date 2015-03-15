@@ -1,4 +1,4 @@
-import conversion
+import conversions
 import unittest
 
 """
@@ -102,8 +102,6 @@ class FahrenheitToCelsius(unittest.TestCase):
 	def testFahrenheitToCelsius_largeNumber(self):
 		result = conversion.convertFahrenheitToCelsius(4222238.00)
 		self.assertEqual(2345670, result)
-
-
 
 """
 test conversion kelvin to fahrenheit
